@@ -372,8 +372,6 @@ a.cadeau-nom:hover{color:var(--cobalt);text-decoration:underline;text-decoration
 .reunis-txt{margin:0 0 8px;font-size:.95rem;color:#3b332b}
 .reunis-txt span{white-space:nowrap}
 .reunis-txt strong{font-family:var(--f-serif);font-weight:400;font-size:1.75rem;line-height:1;color:var(--encre);margin-right:5px}
-.reunis-barre{height:6px;border-radius:999px;background:rgba(21,17,14,.1);overflow:hidden}
-.reunis-barre span{display:block;height:100%;width:var(--p,0%);background:var(--cobalt);border-radius:inherit;transition:width .8s ease}
 @media (max-width:540px){
   .cadeau{grid-template-columns:56px minmax(0,1fr);gap:10px 14px;align-items:start}
   .cadeau-vignette{width:56px;height:56px}
@@ -615,7 +613,7 @@ dialog.fiche{overscroll-behavior:contain}
       <div>
         <p class="tag">L'atelier de Charlotte · Paris 11<sup>e</sup></p>
         <h1 id="titre-site">Un peu de tout, <em>fait main.</em></h1>
-        <p class="lede">Cuisine, céramique, peinture, aquarelle, broderie, couture et photo. Melle Citron, c'est le petit atelier de Charlotte : on y regarde, on y goûte, et parfois on repart avec une pièce.</p>
+        <p class="lede">Cuisine, céramique, peinture, aquarelle, broderie, couture et photo. Melle Citron, c'est le petit atelier de Charlotte : on regarde, on goûte, et parfois on repart avec une pièce.</p>
         <div class="actions">
           <a class="btn btn-citron" href="#la-galerie">Entrer dans la galerie</a>
           <a class="btn btn-ligne" href="#recettes" data-onglet="recettes">Les recettes</a>
@@ -816,8 +814,7 @@ dialog.fiche{overscroll-behavior:contain}
             <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
-            <p class="reunis-txt"><strong id="reunis-montant">500 €</strong> réunis sur <span id="reunis-total"></span></p>
-            <div class="reunis-barre" id="reunis-barre" role="progressbar" aria-label="Déjà réuni pour l'atelier" aria-valuemin="0"><span></span></div>
+            <p class="reunis-txt"><strong id="reunis-montant">500 €</strong> déjà réunis pour l’atelier, merci ♥</p>
           </div>
         </div>
         <div class="filtres filtres-cadeaux" id="filtres-cadeaux" role="group" aria-label="Catégories de la liste"></div>
@@ -1460,9 +1457,9 @@ const CADEAUX = [
     {nom:'Fil à couper à poignées en bois', img:'fil-p44', url:'https://ceradel.fr/products/fil-a-couper-p44', prix:2.2, usage:"Pour couper la terre et décoller les pièces du tour."},
     {nom:'Éponge à porcelaine', img:'eponge', url:'https://ceradel.fr/products/eponge-pour-porcelaine-xiem', prix:14.5, usage:"Pour les finitions sur la porcelaine."},
     {nom:'Sac à outils de poterie', img:'sac', url:'https://ceradel.fr/products/sac-pour-la-poterie-xiem', prix:48, usage:"Pour ranger tous ses outils, et les emporter."},
-    {nom:"Tabouret d'atelier en bois", img:'tabouret', url:'https://www.amazon.fr/dp/B018KCRYEY', prix:65.99, usage:"Un tabouret pivotant en hêtre, réglable en hauteur, pour le tour et pour la table."},
+    {nom:"Tabouret d'atelier ancien, à vis", img:'tabouret-vis', url:'https://www.leboncoin.fr/ad/ameublement/3259270839', prix:70, usage:"Un vrai tabouret d'atelier en bois massif, patiné par les années : sa grande vis le règle de 48 à 69 cm, pour le tour comme pour la table."},
     {nom:'Seau en zinc à l’ancienne', img:'seau-zinc', url:'https://www.amazon.fr/dp/B00VTSADCW', prix:18.9, usage:"Pour l'eau du tour : un beau seau en zinc, avec sa poignée en bois."},
-    {nom:'2 bacs à terre en acier galvanisé', img:'bac-terre', url:'https://www.amazon.fr/dp/B00C7QTWXG', prix:81.24, usage:"Avec leur couvercle, pour garder la terre humide et prête à travailler."},
+    {nom:'Pot en grès pour la terre, 10 L', img:'pot-gres', url:'https://www.amazon.fr/dp/B00445RW44', prix:69.99, usage:"En grès, avec un couvercle à rigole d'eau qui ferme à l'air : la terre y reste humide et prête à travailler."},
     {nom:'Tablier en lin rayé rose', img:'tablier', url:'https://merci-merci.com/products/tablier-en-lin-lave-rayures-trame-rose', prix:65, usage:"Pour travailler la terre sans se salir."}
   ]},
   {cat:'Peinture', c:'var(--citron)', items:[
@@ -1481,16 +1478,16 @@ const CADEAUX = [
       {t:'Marguerite', img:'tissu-marguerite', url:'https://maisonprimavera.fr/products/tissu-au-metre-marguerite-la-cle-des-champs'},
       {t:'Primavera', img:'tissu-primavera', url:'https://maisonprimavera.fr/products/tissu-au-metre-motif-primavera'}]},
     {nom:'Tissu tencel, lin et coton, 2 m', img:'tissu-fauve', url:'https://www.maison-fauve.com/products/tissu-doupion-de-tencel-lin-et-coton-plusieurs-couleurs', prix:53.8, usage:"Un tissu fluide de la marque Maison Fauve, pour coudre ses vêtements, en neuf couleurs."},
-    {nom:'2 patrons Maison Fauve', prix:35.8, usage:"Deux patrons de couture de la marque française : une robe et une blouse.", variantes:[
+    {nom:'2 patrons Maison Fauve', prix:35.8, usage:"Deux patrons de couture de la marque française : une robe et une surchemise.", variantes:[
       {t:'Robe Prose', img:'patron-prose', url:'https://www.maison-fauve.com/products/patron-couture-robe-prose-patron-pochette'},
-      {t:'Blouse Missive', img:'patron-missive', url:'https://www.maison-fauve.com/products/patron-couture-blouse-missive-patron-pochette'}]},
+      {t:'Surchemise Ex Libris', img:'patron-exlibris', url:'https://www.maison-fauve.com/products/patron-couture-surchemise-ex-libris-patron-pochette'}]},
     {nom:'Ciseaux de couturière', img:'ciseaux', url:'https://sajou.fr/fr/paires-de-ciseaux-couture-et-tailleur/4775-paire-de-ciseaux-couture-bancal-20-cm-3665546015122.html', prix:58.5, usage:"De beaux ciseaux à tissu de la Maison Sajou, pour couper ses coupons."}
   ]},
   {cat:'Cuisine & épicerie', c:'var(--olive)', items:[
-    {nom:'2 couteaux Opinel Les Forgés 1890', prix:210, usage:"Un couteau de chef et un couteau d'office forgés en France, manche en hêtre : de vrais couteaux de pro, beaux à accrocher.", variantes:[
+    {nom:'2 couteaux Opinel Les Forgés 1890', prix:210, usage:"Un couteau de chef et un couteau d'office forgés en France, manche en hêtre : de vrais couteaux de pro, beaux à laisser en vue.", variantes:[
       {t:'Chef', img:'couteau-chef', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-chef-les-forges-1890'},
       {t:'Office', img:'couteau-office', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-office-les-forges-1890'}]},
-    {nom:'Barre aimantée en hêtre', img:'barre-aimantee', url:'https://www.arcos.com/fr-fr/products/barre-aimantee-695000', prix:34.16, usage:"Pour suspendre les couteaux au mur de la cuisine, à portée de main."},
+    {nom:'Bloc aimanté en noyer', img:'bloc-noyer', url:'https://www.amazon.fr/dp/B093L9NQYH', prix:46.95, usage:"Un bloc de noyer massif sur pied en inox : les couteaux s'y posent par aimant, des deux côtés, sans percer le mur."},
     {nom:'Pince de dressage de chef', img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
     {nom:'100 sachets kraft à fenêtre', img:'sachets', url:'https://www.amazon.fr/dp/B0FHHWVSRW', prix:11.99, usage:"Pour emballer ses douceurs maison."}
   ]},
@@ -1503,7 +1500,7 @@ const CADEAUX = [
     {nom:"2 spots d'atelier et leurs ampoules", img:'spots', url:'https://www.ikea.com/fr/fr/p/hektar-applique-spot-a-pince-gris-fonce-80215308/', prix:54.97, offert:true, usage:"Des spots industriels en métal, en lumière chaude : l'un au-dessus du tour, l'autre sur la grande table."},
     {nom:'Panneau à outils en bois', img:'panneau', url:'https://www.ikea.com/fr/fr/p/skadis-panneau-perfore-combinaison-bois-s09217062/', prix:34, offert:true, usage:"Au-dessus du tour, pour avoir tous ses outils de poterie sous la main."},
     {nom:'2 tréteaux en bouleau', img:'treteaux', url:'https://www.ikea.com/fr/fr/p/mittback-treteau-bouleau-30459997/', prix:60, offert:true, usage:"Sous le grand plateau en bois : sa table pour peindre, coudre et modeler. Ils s'inclinent pour peindre."},
-    {nom:"Plan de travail en chêne massif, d'un seul tenant", img:'plateau-chene', url:'https://www.leboncoin.fr/ad/bricolage/3255721353', prix:170, usage:"Une vraie planche de chêne de 2,58 m, séchée vingt ans, à poser sur les tréteaux : à poncer et huiler, comme dans les anciens ateliers."},
+    {nom:'Plan de travail en chêne massif, 180 cm', img:'plan-chene', url:'https://www.castorama.fr/plan-snack-chene-massif-l-180-x-l-62-x-ep-4-cm-goodhome-hinita/3663602637271_CAFR.prd', prix:199.9, usage:"180 × 62 cm, 4 cm d'épaisseur, déjà huilé : il se pose sur les tréteaux et se nettoie d'un coup d'éponge."},
     {nom:'2 malles en aluminium, 93 L', img:'malle-alu', url:'https://www.amazon.fr/dp/B07LCH85V4', prix:322.58, usage:"Étanches à l'humidité de la cave : pour ranger tissus, papiers et toiles bien à l'abri."},
     {nom:'Déshumidificateur', img:'deshumidificateur', url:'https://www.amazon.fr/dp/B07BQTMKXG', prix:111.99, offert:true, usage:"Pour une cave saine, où la terre, les toiles et le tissu ne prennent pas l'humidité."},
     {nom:'Hygromètre', img:'hygrometre', url:'https://www.amazon.fr/dp/B01H1R0K68', prix:11.99, offert:true, usage:"Pour surveiller l'humidité de l'atelier."}
@@ -1574,13 +1571,7 @@ CADEAUX.forEach(g => {
   zone.appendChild(bloc);
 });
 
-const barre = document.getElementById('reunis-barre');
 document.getElementById('reunis-montant').textContent = eur(REUNIS);
-document.getElementById('reunis-total').textContent = eur(Math.round(total));
-barre.setAttribute('aria-valuemax', String(Math.round(total)));
-barre.setAttribute('aria-valuenow', String(REUNIS));
-barre.setAttribute('aria-valuetext', eur(REUNIS) + ' réunis sur ' + eur(Math.round(total)));
-requestAnimationFrame(() => barre.style.setProperty('--p', Math.min(100, REUNIS / total * 100).toFixed(1) + '%'));
 
 const filtresCadeaux = document.getElementById('filtres-cadeaux');
 CADEAUX.forEach((g, n) => {
